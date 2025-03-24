@@ -8,28 +8,20 @@ import {
   Avatar,
   Drawer,
   DrawerContent,
-  DrawerItem,
-  DrawerItemProps,
   DrawerSelectEvent,
 } from "@progress/kendo-react-layout";
 import { Window } from "@progress/kendo-react-dialogs";
 import { Button } from "@progress/kendo-react-buttons";
 import { Tooltip } from "@progress/kendo-react-tooltip";
-import {
-  Input,
-  TextBox,
-  TextBoxChangeEvent,
-} from "@progress/kendo-react-inputs";
+import { TextBox, TextBoxChangeEvent } from "@progress/kendo-react-inputs";
 import * as svgIcons from "@progress/kendo-svg-icons";
 
 import {
   BoldItalicUnderlineToggles,
-  CreateLink,
   diffSourcePlugin,
   DiffSourceToggleWrapper,
   headingsPlugin,
   imagePlugin,
-  InsertImage,
   InsertTable,
   InsertThematicBreak,
   linkDialogPlugin,
@@ -151,16 +143,6 @@ const items = [
   //     route: "/tilelayout",
   //   },
 ];
-
-const CustomItem = (props: DrawerItemProps) => {
-  return (
-    <DrawerItem {...props}>
-      {/* <div>
-      <span>{props.text}</span>
-    </div> */}
-    </DrawerItem>
-  );
-};
 
 function useWindowSize() {
   const [size, setSize] = React.useState([0, 0]);

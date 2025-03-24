@@ -1,6 +1,5 @@
 import { ListBoxItemClickEvent } from "@progress/kendo-react-listbox";
 import { create } from "zustand";
-import { from, to } from "./constants";
 
 export interface Mail {
   id: number;
