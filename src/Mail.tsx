@@ -9,65 +9,17 @@ import "@mdxeditor/editor/style.css";
 
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { Mail, SELECTED_FIELD, useStore } from "./lib/store";
 
 dayjs.extend(customParseFormat);
 
-interface Mail {
-  id: number;
-  selected: boolean;
-  from: { image?: string; name: string; email: string };
-  date: Date;
-  subject: string;
-  message: string;
-  read: boolean;
-}
-
-export default function Mail() {
-  const [mails, setMails] = useState<Mail[]>([
-    {
-      id: 1,
-      selected: false,
-      from: {
-        name: "John Doe",
-        email: "john.doe@gmail.com",
-      },
-      date: new Date(),
-      subject: "Meeting",
-      message: "Hello, I would like to schedule a meeting with you.",
-      read: false,
-    },
-    {
-      id: 2,
-      selected: false,
-      from: {
-        name: "John Doe",
-        email: "john.doe@gmail.com",
-      },
-      date: new Date(),
-      subject: "Meeting",
-      message:
-        "Hello, I would like to schedule a meeting with you.Hello, I would like to schedule a meeting with you.Hello, I would like to schedule a meeting with you.",
-      read: true,
-    },
-    {
-      id: 3,
-      selected: false,
-      from: {
-        name: "John Doe",
-        email: "john.doe@gmail.com",
-      },
-      date: new Date(),
-      subject: "Meeting",
-      message: "Hello, I would like to schedule a meeting with you.",
-      read: false,
-    },
-  ]);
+export default function MailPage() {
+  const { mails, handleMailClick } = useStore((state) => state);
+  console.log(mails);
 
   const [selectedMail, setSelectedMail] = useState<Mail>();
 
   useEffect(() => {
-    console.log(mails);
-
     setSelectedMail(mails.find((mail) => mail.selected));
   }, [mails]);
 
@@ -77,7 +29,9 @@ export default function Mail() {
     return (
       <li {...others} style={{ padding: "0" }}>
         <div
-          className={`py-3 px-4 text-nowrap bg-blue-50 border-b border-gray-300 hover:shadow-lg hover:z-10 w-full ${
+          className={`py-3 px-4 flex justify-between text-nowrap ${
+            dataItem.read ? "bg-blue-50" : ""
+          } border-b border-gray-300 hover:shadow-lg hover:z-10 w-full ${
             !dataItem.read && "font-bold"
           }`}
         >
@@ -87,7 +41,7 @@ export default function Mail() {
           <span>{dataItem.subject}</span>
           {" - "}
           <span className="mr-12">
-            {String(dataItem.message).slice(0, 50)}...
+            {String(dataItem.message).slice(0, 30)}...
           </span>
           <span className="text-right">
             {dayjs(dataItem.date).format("MMM DD")}
@@ -97,31 +51,29 @@ export default function Mail() {
     );
   };
 
-  const SELECTED_FIELD = "selected";
+  //   const handleItemClick = (event: ListBoxItemClickEvent) => {
+  //     console.log(event);
 
-  const handleItemClick = (event: ListBoxItemClickEvent) => {
-    console.log(event);
-
-    setMails(
-      mails.map((item) => {
-        if (item.id === event.dataItem.id) {
-          item[SELECTED_FIELD] = !item[SELECTED_FIELD];
-        } else if (!event.nativeEvent.ctrlKey) {
-          item[SELECTED_FIELD] = false;
-        }
-        return item;
-      })
-    );
-  };
+  //     setMails(
+  //       mails.map((item) => {
+  //         if (item.id === event.dataItem.id) {
+  //           item[SELECTED_FIELD] = !item[SELECTED_FIELD];
+  //         } else if (!event.nativeEvent.ctrlKey) {
+  //           item[SELECTED_FIELD] = false;
+  //         }
+  //         return item;
+  //       })
+  //     );
+  //   };
 
   return (
     <div className="flex">
       <ListBox
-        style={{ height: 400, width: "50%" }}
+        style={{ width: "50%", height: "90vh" }}
         data={mails}
         textField="message"
         selectedField={SELECTED_FIELD}
-        onItemClick={(e: ListBoxItemClickEvent) => handleItemClick(e)}
+        onItemClick={(e: ListBoxItemClickEvent) => handleMailClick(e)}
         item={MailItem}
       />
       <div className="w-1/2">
@@ -153,6 +105,7 @@ export default function Mail() {
             <MDXEditor
               key={selectedMail.id}
               markdown={selectedMail.message}
+              readOnly={true}
               onChange={console.log}
               className="ml-12"
             />

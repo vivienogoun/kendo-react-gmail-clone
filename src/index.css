@@ -24,6 +24,74 @@ a:-webkit-any-link {
   text-decoration: none;
 }
 
+.k-appbar {
+  padding: 12px 8px;
+  box-shadow: none;
+  background-color: rgba(0, 0, 255, 0.02);
+}
+
+.k-drawer-mini .k-drawer.k-drawer-start {
+  flex-basis: 5.2em !important;
+}
+
+.k-drawer-mini .k-drawer.k-drawer-start .k-drawer-item .k-item-text {
+  display: none;
+}
+
+.k-drawer-mini .k-drawer.k-drawer-start .k-drawer-item:not(:first-child) {
+  width: fit-content;
+  border-radius: calc(infinity * 1px);
+  padding: 6px 12px;
+  margin-left: 1em;
+}
+
+.k-drawer-item {
+  padding: 6px 28px;
+  margin-right: 1em;
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+.k-drawer-item:first-child {
+  display: flex;
+  align-items: center;
+  margin: 8px 0 1em 8px;
+  padding: 16px 1em;
+  font-size: large;
+  width: fit-content;
+  background-color: rgba(0, 150, 255, 0.2);
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+}
+
+.k-drawer-item:first-child .k-icon {
+  width: 1.2em;
+}
+
+.k-drawer-item.k-selected {
+  font-weight: bold;
+  color: #000;
+  background-color: rgba(0, 100, 255, 0.2);
+}
+
+.k-drawer-item.k-selected:hover {
+  color: #000;
+  background-color: rgba(0, 100, 255, 0.2);
+}
+
+.k-drawer-item.k-selected:focus {
+  color: #000;
+  background-color: rgba(0, 100, 255, 0.2);
+}
+
+/* .k-textbox.k-focus {
+  border: none;
+} */
+
+/* .mdxeditor-popup-container > div {
+  z-index: 1000;
+} */
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -197,4 +265,67 @@ a:-webkit-any-link {
     color: #ffffff;
     background-color: #3d3d3d;
   }
+}
+
+#root {
+  padding: 0 !important;
+}
+
+.k-drawer-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+.title {
+  font-size: 18px;
+  margin: 0;
+}
+.box {
+  padding: 4px;
+  text-align: center;
+  vertical-align: center;
+}
+
+.header {
+  background-color: #fae47a;
+}
+.nav {
+  background-color: #fbd17f;
+}
+.inner-content {
+  background-color: #f5bf8b;
+}
+.toc {
+  background-color: #ebaa79;
+}
+.footer {
+  background-color: #e39a6a;
+}
+
+.grid-layout-wrapper {
+  width: 300px;
+  margin: 0 auto;
+  box-shadow: 0px 10px 20px #00000029;
+  border-radius: 30px;
+}
+.grid-layout-page {
+  padding: 20px 10px;
+}
+
+.grid-layout-content {
+  background: #f9f9f9;
+  height: 470px;
+  overflow: auto;
+}
+
+.grid-box {
+  padding: 4px;
+  background-color: #87dfce;
+}
+
+.big {
+  background-color: #fea69c;
+}
+.rect {
+  background-color: #fee47c;
 }
